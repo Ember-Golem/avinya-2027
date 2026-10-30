@@ -48,7 +48,8 @@ export const GlobalSearchBar: React.FC<GlobalSearchBarProps> = ({
         e.description.toLowerCase().includes(q) ||
         e.category.toLowerCase().includes(q) ||
         e.venue.toLowerCase().includes(q) ||
-        e.islandSector.toLowerCase().includes(q)
+        e.islandSector.toLowerCase().includes(q) ||
+        e.clubs?.some((c) => c.toLowerCase().includes(q))
     );
   }, [query, selectedDay]);
 

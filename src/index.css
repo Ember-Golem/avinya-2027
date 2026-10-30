@@ -143,6 +143,31 @@
 .font-mono-tech {
   font-family: 'Share Tech Mono', monospace;
 }
+.font-syne {
+  font-family: 'Syne', sans-serif;
+}
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.font-space {
+  font-family: 'Space Grotesk', sans-serif;
+}
+.font-mono-jb {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Chromatic Aberration for Day 2 Synthwave */
+.chromatic-text {
+  text-shadow: -2px 0 #ff007f, 2px 0 #00f5d4;
+}
+.chromatic-text-sm {
+  text-shadow: -1px 0 #ff007f, 1px 0 #00f5d4;
+}
+
+/* Warm Gold Glow for Day 3 Carnival */
+.gold-glow-text {
+  text-shadow: 0 0 20px rgba(255, 183, 3, 0.6), 0 0 40px rgba(212, 175, 55, 0.4);
+}
 
 /* Chamfered cut-corner polygons */
 .chamfer-lg {

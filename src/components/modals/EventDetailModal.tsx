@@ -178,7 +178,7 @@ TIMESTAMP      : ${registrationData.timestamp}
 =====================================================
 STATUS: EXPEDITION SLOT CONFIRMED • PASS VALID
 Present this ticket at the Arena Registration Desk.
-Official Portal: https://hack2future.iiitdwd.ac.in/
+Official Portal: IIIT Dharwad Avinya 2027
 =====================================================`;
 
     const blob = new Blob([passContent], { type: 'text/plain;charset=utf-8' });
@@ -268,9 +268,27 @@ Official Portal: https://hack2future.iiitdwd.ac.in/
             {event.title}
           </DialogTitle>
 
-          <DialogDescription className="text-sm font-mono-tech text-slate-300 italic">
+          <DialogDescription className="text-sm font-mono-jb text-slate-300 italic">
             "{event.tagline}"
           </DialogDescription>
+
+          {event.clubs && event.clubs.length > 0 && (
+            <div className="flex flex-wrap items-center gap-2 mt-3 pt-2 border-t border-white/10">
+              <span className="text-[10px] font-mono-jb uppercase text-slate-400">
+                HOST CLUBS:
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {event.clubs.map((c) => (
+                  <span
+                    key={c}
+                    className="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono-jb text-[11px] font-semibold border border-white/15"
+                  >
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* TAB 1: EVENT DOSSIER (Full Briefing, Rules, Coordinators) */}
@@ -543,7 +561,7 @@ Official Portal: https://hack2future.iiitdwd.ac.in/
 
             {/* Portal Link Options */}
             <div className="p-3.5 rounded-xl bg-black/40 border border-white/5 flex items-center justify-between text-xs font-mono-tech flex-wrap gap-2">
-              <span className="text-slate-400">External Portals:</span>
+              <span className="text-slate-400">Official Portal:</span>
               <div className="flex items-center gap-2">
                 <a
                   href="https://unstop.com"
@@ -551,16 +569,7 @@ Official Portal: https://hack2future.iiitdwd.ac.in/
                   rel="noopener noreferrer"
                   className="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-cyan-300 border border-white/10 flex items-center gap-1"
                 >
-                  <span>Unstop</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-                <a
-                  href="https://hack2future.iiitdwd.ac.in/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-amber-300 border border-white/10 flex items-center gap-1"
-                >
-                  <span>Hack2Future</span>
+                  <span>Unstop Fest Arena</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>
