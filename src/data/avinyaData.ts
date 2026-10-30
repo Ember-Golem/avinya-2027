@@ -116,7 +116,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Aditya Verma', phone: '+91 98451 22341', role: 'Technical Lead' },
           { name: 'Kavya Shenoy', phone: '+91 97412 88921', role: 'Event Convener' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-spice-algothon',
+        registrationLink: '#register',
         iconName: 'Code',
         featured: true,
         themeAccent: '#D9531E',
@@ -145,7 +145,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Rohan Kulkarni', phone: '+91 94812 33419', role: 'Robotics Lead' },
           { name: 'Ananya Hegde', phone: '+91 96110 44520', role: 'Arena Marshall' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-sandcrawler-rover',
+        registrationLink: '#register',
         iconName: 'Bot',
         featured: true,
         themeAccent: '#E6C280',
@@ -174,7 +174,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Sameer Joshi', phone: '+91 98860 11982', role: 'CTF Master' },
           { name: 'Pooja Nair', phone: '+91 91080 77341', role: 'Platform Admin' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-arrakis-ctf',
+        registrationLink: '#register',
         iconName: 'ShieldAlert',
         featured: false,
         themeAccent: '#D9531E',
@@ -202,7 +202,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Dr. Sharath R.', phone: '+91 98450 67123', role: 'Faculty Mentor' },
           { name: 'Tanvi Deshmukh', phone: '+91 99012 34567', role: 'Student Lead' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-mirage-promptcraft',
+        registrationLink: '#register',
         iconName: 'Cpu',
         featured: false,
         themeAccent: '#E6C280',
@@ -230,7 +230,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Nikhil Prabhu', phone: '+91 97312 90812', role: 'Music Secretary' },
           { name: 'Sneha Patil', phone: '+91 98801 23490', role: 'Stage Manager' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-desert-soliloquy',
+        registrationLink: '#register',
         iconName: 'Music',
         featured: false,
         themeAccent: '#D9531E',
@@ -258,7 +258,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Karthik Rao', phone: '+91 96112 55431', role: 'Esports Head' },
           { name: 'Deepak M.', phone: '+91 97401 66723', role: 'Bracket Marshall' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-valorant-lan',
+        registrationLink: '#register',
         iconName: 'Gamepad2',
         featured: false,
         themeAccent: '#E6C280',
@@ -302,7 +302,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Aryan Mehta', phone: '+91 99001 44321', role: 'Sprint Director' },
           { name: 'Divya Iyer', phone: '+91 98452 77120', role: 'Dev Mentor' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-neon-circuit-sprint',
+        registrationLink: '#register',
         iconName: 'Zap',
         featured: true,
         themeAccent: '#FF007F',
@@ -330,7 +330,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Varun Nair', phone: '+91 97410 88231', role: 'Creative Tech Lead' },
           { name: 'Ishita Sen', phone: '+91 98863 11209', role: 'UI/UX Lead' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-synth-glitch-webgl',
+        registrationLink: '#register',
         iconName: 'Monitor',
         featured: false,
         themeAccent: '#00F5D4',
@@ -358,7 +358,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Dhruv Goswami', phone: '+91 98451 99201', role: 'Band Liaison' },
           { name: 'Meera Menon', phone: '+91 99011 55670', role: 'Acoustics Engineer' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-battle-of-bands',
+        registrationLink: '#register',
         iconName: 'Flame',
         featured: true,
         themeAccent: '#FF007F',
@@ -386,7 +386,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Riddhima Joshi', phone: '+91 96118 77210', role: 'Dance Secretary' },
           { name: 'Tejas B.', phone: '+91 97415 33091', role: 'DJ & Stage Coord' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-cyberstreet-dance',
+        registrationLink: '#register',
         iconName: 'Sparkles',
         featured: false,
         themeAccent: '#00F5D4',
@@ -414,7 +414,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Shashank Pai', phone: '+91 98865 33119', role: 'Esports Director' },
           { name: 'Akash Sundar', phone: '+91 94481 22901', role: 'Shoutcaster Head' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-overclocked-esports',
+        registrationLink: '#register',
         iconName: 'Trophy',
         featured: false,
         themeAccent: '#FF007F',
@@ -441,7 +441,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Dr. Vivek S.', phone: '+91 98455 00921', role: 'Research Mentor' },
           { name: 'Pranav Kulkarni', phone: '+91 97419 66102', role: 'Infrastructure Head' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-zeroday-lab',
+        registrationLink: '#register',
         iconName: 'Terminal',
         featured: false,
         themeAccent: '#00F5D4',
@@ -485,7 +485,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Harshita Reddy', phone: '+91 98450 11234', role: 'Festival Convener' },
           { name: 'Abhishek Sharma', phone: '+91 99002 99810', role: 'Artist Hospitality' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-pro-show-2027',
+        registrationLink: '#register',
         iconName: 'Sparkles',
         featured: true,
         themeAccent: '#FFB703',
@@ -513,7 +513,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Ankita Sen', phone: '+91 97411 22890', role: 'Cosplay Coordinator' },
           { name: 'Suraj Desai', phone: '+91 96119 44321', role: 'Stage Tech' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-cosplay-aegis',
+        registrationLink: '#register',
         iconName: 'Crown',
         featured: true,
         themeAccent: '#E63946',
@@ -541,7 +541,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Gautam Bhat', phone: '+91 98453 88120', role: 'Code Jam Lead' },
           { name: 'Pooja Hegde', phone: '+91 97402 77319', role: 'Scorer' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-esoteric-code-jam',
+        registrationLink: '#register',
         iconName: 'Code',
         featured: false,
         themeAccent: '#FFB703',
@@ -569,7 +569,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Vidya S.', phone: '+91 99014 33210', role: 'Cultural Secretary' },
           { name: 'Karthik S.', phone: '+91 98860 99401', role: 'Logistics Lead' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-tarang-fusion',
+        registrationLink: '#register',
         iconName: 'Music',
         featured: false,
         themeAccent: '#FFB703',
@@ -596,7 +596,7 @@ export const islandDaysData: IslandDay[] = [
           { name: 'Akshay Shenoy', phone: '+91 97418 22345', role: 'Arcade Host' },
           { name: 'Neha V.', phone: '+91 96112 00987', role: 'Referee' }
         ],
-        registrationLink: 'https://unstop.com/o/avinya-harbor-arcade',
+        registrationLink: '#register',
         iconName: 'Gamepad2',
         featured: false,
         themeAccent: '#E63946',

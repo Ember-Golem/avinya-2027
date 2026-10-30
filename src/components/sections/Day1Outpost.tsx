@@ -8,7 +8,8 @@ import {
   ArrowRight,
   Filter,
   Shield,
-  Compass
+  Compass,
+  Wind
 } from 'lucide-react';
 import { EventItem, EventCategory, islandDaysData } from '@/data/avinyaData';
 
@@ -40,28 +41,81 @@ export const Day1Outpost: React.FC<Day1OutpostProps> = ({ onSelectEvent }) => {
         backgroundColor: '#0E0806'
       }}
     >
-      {/* Parallax Background Banner with Spice-Amber & Obsidian Mask */}
+      {/* Parallax Background Banner with Reduced Dark Overlay so artwork is clearly visible */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-35 transition-opacity duration-700"
+        className="absolute inset-0 z-0 bg-cover bg-center opacity-50 transition-opacity duration-700 pointer-events-none"
         style={{
           backgroundImage: `url('/images/day1-outpost.png')`,
           backgroundAttachment: 'fixed'
         }}
       />
 
-      {/* Multi-Layered Desert Gradient Overlay & Vignette */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#040814] via-[#1F1108]/90 to-[#12071F] pointer-events-none" />
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-600/10 via-transparent to-black/60 pointer-events-none" />
+      {/* Top & Bottom Gradient Feathering into Neighboring Worlds */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#040814] via-transparent to-[#12071F] pointer-events-none" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-600/10 via-transparent to-black/60 pointer-events-none" />
 
-      {/* Floating Dune Dust Motes (CSS Keyframe Simulation) */}
+      {/* Floating Dune Dust Motes */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-10 w-2 h-2 rounded-full bg-amber-400/30 blur-[1px] animate-pulse" />
-        <div className="absolute top-1/2 right-20 w-1.5 h-1.5 rounded-full bg-orange-400/40 blur-[1px] animate-ping" style={{ animationDuration: '4s' }} />
-        <div className="absolute bottom-1/3 left-1/3 w-2 h-2 rounded-full bg-amber-300/20 blur-[1px] animate-pulse" style={{ animationDuration: '6s' }} />
-        <div className="absolute top-2/3 right-1/4 w-3 h-3 rounded-full bg-orange-500/15 blur-[2px] animate-pulse" />
+        <div className="absolute top-1/4 left-10 w-2 h-2 rounded-full bg-amber-400/40 blur-[1px] animate-pulse" />
+        <div className="absolute top-1/2 right-20 w-1.5 h-1.5 rounded-full bg-orange-400/50 blur-[1px] animate-ping" style={{ animationDuration: '4s' }} />
+        <div className="absolute bottom-1/3 left-1/3 w-2 h-2 rounded-full bg-amber-300/30 blur-[1px] animate-pulse" style={{ animationDuration: '6s' }} />
+        <div className="absolute top-2/3 right-1/4 w-3 h-3 rounded-full bg-orange-500/25 blur-[2px] animate-pulse" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        {/* PANORAMIC ISLAND ARRIVAL SHOWCASE BANNER */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative w-full rounded-2xl overflow-hidden border border-[#D9531E]/50 mb-12 shadow-2xl group chamfer-lg bg-[#140B07]"
+        >
+          <div className="relative aspect-[21/9] sm:aspect-[24/9] md:h-72 w-full overflow-hidden">
+            <img
+              src="/images/day1-outpost.png"
+              alt="Day 1 The Last Outpost — Arrakis Sector Panoramic Artwork"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            {/* Cinematic vignette overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0E0806] via-black/20 to-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0E0806]/80 via-transparent to-transparent" />
+
+            {/* Top Telemetry Header */}
+            <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between flex-wrap gap-2 text-[10px] sm:text-xs font-mono-tech">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-black/85 border border-[#D9531E]/60 text-[#E6C280] backdrop-blur-md shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-[#D9531E] animate-ping" />
+                <span>⚓ EXPEDITION BOAT DOCKED // SECTOR 01: ARRAKIS RIM</span>
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded bg-black/80 border border-white/10 text-amber-200/90 backdrop-blur-md">
+                <Wind className="w-3.5 h-3.5 text-[#D9531E]" />
+                <span>ATMOSPHERE: 44°C SOLAR STORMS</span>
+                <span className="text-slate-600">|</span>
+                <span>WINDS: 38 KT ESE</span>
+                <span className="text-slate-600">|</span>
+                <span className="text-amber-400">SPICE DUST: HIGH</span>
+              </span>
+            </div>
+
+            {/* Bottom Showcase Caption */}
+            <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-end justify-between flex-wrap gap-3">
+              <div>
+                <span className="text-[10px] uppercase font-mono-tech tracking-widest text-[#D9531E] block mb-0.5">
+                  ISLAND ARRIVAL TELEMETRY
+                </span>
+                <h3 className="text-xl sm:text-3xl font-black font-cinzel text-white drop-shadow-md">
+                  THE LAST OUTPOST // ARRAKIS DESERT CITADEL
+                </h3>
+                <p className="text-xs text-amber-100/90 font-serif max-w-xl hidden md:block">
+                  Ancient computational bastions rising from the spice sands. Only the sharpest logic survives the sandstorm.
+                </p>
+              </div>
+              <div className="px-3 py-1.5 rounded bg-[#1F1108]/90 border border-[#E6C280]/40 text-xs font-mono-tech text-[#E6C280] shadow-md backdrop-blur-sm">
+                NAV: 15.4610° N, 75.0120° E
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Island Header & Sector Telemetry */}
         <div className="mb-12 md:mb-16">
           <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -94,7 +148,7 @@ export const Day1Outpost: React.FC<Day1OutpostProps> = ({ onSelectEvent }) => {
 
             {/* Arrakis Lore Monolith Badge */}
             <div className="lg:col-span-4 flex lg:justify-end">
-              <div className="p-4 rounded-lg bg-[#1F1108]/80 border border-[#D9531E]/30 backdrop-blur-md shadow-lg max-w-sm">
+              <div className="p-4 rounded-lg bg-[#1F1108]/90 border border-[#D9531E]/40 backdrop-blur-md shadow-lg max-w-sm">
                 <div className="flex items-center gap-2 text-[#E6C280] text-xs font-mono-tech uppercase mb-1">
                   <Shield className="w-4 h-4 text-[#D9531E]" />
                   <span>SECTOR DIRECTIVE</span>
@@ -138,7 +192,7 @@ export const Day1Outpost: React.FC<Day1OutpostProps> = ({ onSelectEvent }) => {
           </div>
         </div>
 
-        {/* Day 1 Event Cards Grid (Responsive + Mobile Snap Carousel on Small Screens) */}
+        {/* Day 1 Event Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredEvents.map((event, idx) => (
             <motion.div

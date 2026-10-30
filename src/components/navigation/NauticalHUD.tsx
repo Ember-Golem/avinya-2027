@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useSpring, useTransform } from 'framer-motion';
 import {
   Compass,
   Flame,
@@ -83,33 +83,50 @@ const WAYPOINTS: Waypoint[] = [
   }
 ];
 
+const TRACK_HEIGHT = 240; // Total vertical travel distance in pixels
+
 export const NauticalHUD: React.FC<NauticalHUDProps> = ({
   activeSection,
   onNavigate,
   onOpenSearch
 }) => {
-  const { scrollYProgress } = useScroll();
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 20,
-    restDelta: 0.001
-  });
-
   const [hoveredPoint, setHoveredPoint] = useState<ActiveSection | null>(null);
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [scrollFraction, setScrollFraction] = useState(0);
 
+  // Accurate real-time scroll calculation
   useEffect(() => {
     const handleScroll = () => {
       setScrolledPastHero(window.scrollY > 120);
+
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (maxScroll > 0) {
+        const fraction = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
+        setScrollFraction(fraction);
+      }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const activeWaypoint = WAYPOINTS.find((wp) => wp.id === activeSection) || WAYPOINTS[0];
+  // Smooth physics spring for boat motion
+  const smoothProgress = useSpring(scrollFraction, {
+    stiffness: 90,
+    damping: 18,
+    mass: 0.2
+  });
 
-  // Map progress (0 -> 1) to vertical pixel range (0 -> 260px) for the boat icon along the dashed path
-  const boatY = useTransform(smoothProgress, [0, 1], [0, 260]);
+  // Keep spring updated with scrollFraction
+  useEffect(() => {
+    smoothProgress.set(scrollFraction);
+  }, [scrollFraction, smoothProgress]);
+
+  const boatY = useTransform(smoothProgress, [0, 1], [0, TRACK_HEIGHT]);
+
+  const activeWaypoint = WAYPOINTS.find((wp) => wp.id === activeSection) || WAYPOINTS[0];
+  const activeIndex = WAYPOINTS.findIndex((wp) => wp.id === activeSection);
 
   return (
     <>
@@ -117,7 +134,7 @@ export const NauticalHUD: React.FC<NauticalHUDProps> = ({
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 hidden md:block ${
           scrolledPastHero
-            ? 'bg-[#040814]/85 backdrop-blur-md border-b border-white/10 shadow-xl shadow-black/40 py-2.5'
+            ? 'bg-[#040814]/90 backdrop-blur-md border-b border-white/10 shadow-xl shadow-black/50 py-2.5'
             : 'bg-transparent py-4'
         }`}
       >
@@ -221,48 +238,61 @@ export const NauticalHUD: React.FC<NauticalHUDProps> = ({
       {/* DESKTOP FIXED RIGHT SEA ROUTE PROGRESS TRACKER (hidden md:flex) */}
       <aside
         aria-label="Archipelago Sea Route Progress"
-        className="fixed right-5 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center select-none"
+        className="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-center select-none"
       >
-        <div className="relative py-4 px-3 rounded-2xl bg-[#040814]/80 border border-white/10 backdrop-blur-md shadow-2xl flex flex-col items-center">
+        <div className="relative py-4 px-2.5 rounded-2xl bg-[#040814]/90 border border-cyan-500/20 backdrop-blur-md shadow-2xl flex flex-col items-center">
           {/* Nautical Compass Rose at Top */}
-          <div className="mb-2 text-cyan-400/80">
-            <Compass className="w-5 h-5 animate-spin" style={{ animationDuration: '40s' }} />
+          <div className="mb-2 text-cyan-400/90">
+            <Compass className="w-5 h-5 animate-spin" style={{ animationDuration: '30s' }} />
           </div>
 
-          <div className="text-[9px] uppercase tracking-widest text-slate-400 font-mono-tech mb-3">
-            LOG
+          <div className="text-[9px] uppercase tracking-widest text-slate-400 font-mono-tech mb-2">
+            ROUTE
           </div>
 
           {/* Vertical Nautical Route Container */}
-          <div className="relative h-[260px] w-8 flex justify-center">
-            {/* Dashed route line */}
-            <div className="absolute top-2 bottom-2 w-0.5 border-l-2 border-dashed border-cyan-500/30" />
+          <div className="relative w-8 flex justify-center" style={{ height: `${TRACK_HEIGHT}px` }}>
+            {/* Background dashed route line */}
+            <div className="absolute top-0 bottom-0 w-0.5 border-l border-dashed border-slate-700/60" />
 
-            {/* Animated SVG Boat sailing vertically with scroll progress */}
+            {/* Glowing illuminated trail that follows the boat as user scrolls */}
+            <div
+              className="absolute top-0 w-1 rounded-full bg-gradient-to-b from-cyan-400 via-[#00F5D4] to-amber-400 shadow-[0_0_12px_rgba(0,240,255,0.8)] transition-all duration-75"
+              style={{
+                height: `${Math.min(scrollFraction * TRACK_HEIGHT, TRACK_HEIGHT)}px`,
+                left: 'calc(50% - 2px)'
+              }}
+            />
+
+            {/* Animated SVG Boat physically sailing down the vertical route */}
             <motion.div
-              style={{ y: boatY }}
-              className="absolute top-0 -left-1 z-20 pointer-events-none"
+              style={{
+                y: boatY,
+                top: 0
+              }}
+              className="absolute -left-1.5 z-30 pointer-events-none"
             >
-              <div className="relative p-1 rounded-full bg-slate-950 border border-cyan-400 shadow-lg shadow-cyan-500/50">
+              <div className="relative p-1.5 rounded-full bg-slate-950 border-2 border-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.7)]">
                 <svg
                   className="w-4 h-4 text-cyan-300 drop-shadow"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M4 16L12 21L20 16L17 19H7L4 16Z" opacity="0.6" />
-                  <path d="M12 2L6 14H18L12 2Z" fill="currentColor" />
+                  <path d="M4 16L12 21L20 16L17 19H7L4 16Z" opacity="0.7" />
+                  <path d="M12 2L5 14H19L12 2Z" fill="currentColor" />
                   <path d="M2 17L4 20H20L22 17L12 18L2 17Z" fill="currentColor" />
                 </svg>
-                {/* Water ripple wake */}
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3 h-1 bg-cyan-400/60 rounded-full blur-[1px] animate-pulse" />
+                {/* Bioluminescent boat wake ripple */}
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1.5 bg-cyan-400 rounded-full blur-[1px] animate-pulse" />
               </div>
             </motion.div>
 
             {/* 5 Waypoint Markers */}
-            <div className="relative z-10 flex flex-col justify-between h-full py-2">
+            <div className="relative z-10 flex flex-col justify-between h-full py-1">
               {WAYPOINTS.map((wp, index) => {
                 const isActive = activeSection === wp.id;
+                const isPassed = index <= activeIndex;
                 const isHovered = hoveredPoint === wp.id;
 
                 return (
@@ -274,29 +304,35 @@ export const NauticalHUD: React.FC<NauticalHUDProps> = ({
                   >
                     <button
                       onClick={() => onNavigate(wp.id)}
-                      aria-label={`Jump to ${wp.label}`}
+                      aria-label={`Navigate to ${wp.label}`}
                       className={`w-3.5 h-3.5 rounded-full transition-all duration-300 flex items-center justify-center ${
                         isActive
-                          ? 'ring-4 ring-offset-2 ring-offset-slate-950 scale-125'
-                          : 'opacity-70 hover:opacity-100 hover:scale-110'
+                          ? 'ring-4 ring-offset-2 ring-offset-slate-950 scale-125 z-20'
+                          : isPassed
+                          ? 'opacity-90 hover:scale-110'
+                          : 'opacity-50 hover:opacity-100 hover:scale-110'
                       }`}
                       style={{
                         backgroundColor: wp.accentColor,
-                        boxShadow: isActive ? `0 0 12px ${wp.accentColor}` : 'none'
+                        boxShadow: isActive
+                          ? `0 0 16px ${wp.accentColor}`
+                          : isPassed
+                          ? `0 0 8px ${wp.accentColor}66`
+                          : 'none'
                       }}
                     >
                       <span className="sr-only">{wp.label}</span>
                     </button>
 
-                    {/* Tooltip on hover / active */}
-                    {(isHovered || isActive) && (
-                      <div className="absolute right-7 py-1 px-2.5 rounded bg-slate-900/95 border border-white/15 text-[11px] font-mono-tech text-white whitespace-nowrap shadow-xl pointer-events-none flex items-center gap-1.5 transition-all">
+                    {/* Tooltip ONLY visible on hover — eliminates the permanent overlap bug */}
+                    {isHovered && (
+                      <div className="absolute right-8 py-1.5 px-3 rounded-lg bg-slate-950/95 border border-white/20 text-xs font-mono-tech text-white whitespace-nowrap shadow-2xl pointer-events-none flex items-center gap-2 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
                         <span
-                          className="w-1.5 h-1.5 rounded-full"
+                          className="w-2 h-2 rounded-full"
                           style={{ backgroundColor: wp.accentColor }}
                         />
                         <span className="text-slate-400">[{index + 1}]</span>
-                        <span className="font-semibold">{wp.shortLabel}</span>
+                        <span className="font-bold text-white">{wp.shortLabel}</span>
                         <span className="text-slate-500">—</span>
                         <span className="text-slate-300">{wp.label}</span>
                       </div>
@@ -308,8 +344,8 @@ export const NauticalHUD: React.FC<NauticalHUDProps> = ({
           </div>
 
           {/* Bottom Depth / Altitude Marker */}
-          <div className="mt-3 text-[9px] uppercase tracking-wider text-cyan-400/70 font-mono-tech">
-            LEO
+          <div className="mt-2 text-[9px] uppercase tracking-wider text-cyan-400/80 font-mono-tech">
+            ORBIT
           </div>
         </div>
       </aside>
@@ -317,7 +353,7 @@ export const NauticalHUD: React.FC<NauticalHUDProps> = ({
       {/* MOBILE THUMB-FRIENDLY NAUTICAL DOCK (flex md:hidden - fixed bottom z-50) */}
       <nav
         aria-label="Mobile Navigation Dock"
-        className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[#040814]/90 backdrop-blur-lg border-t border-white/10 px-2 py-1.5 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.6)]"
+        className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-[#040814]/95 backdrop-blur-xl border-t border-white/10 px-2 py-1.5 pb-safe shadow-[0_-4px_25px_rgba(0,0,0,0.8)]"
       >
         <div className="flex items-center justify-around max-w-md mx-auto">
           {WAYPOINTS.map((wp) => {

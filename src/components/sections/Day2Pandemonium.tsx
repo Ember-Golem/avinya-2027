@@ -8,7 +8,8 @@ import {
   Trophy,
   ArrowRight,
   Filter,
-  Terminal
+  Terminal,
+  Radio
 } from 'lucide-react';
 import { EventItem, EventCategory, islandDaysData } from '@/data/avinyaData';
 
@@ -37,28 +38,81 @@ export const Day2Pandemonium: React.FC<Day2PandemoniumProps> = ({ onSelectEvent 
       id="day2"
       className="relative min-h-screen py-20 md:py-28 text-white overflow-hidden bg-[#070314]"
     >
-      {/* Background Banner with Cyberpunk Synthwave Overlays */}
+      {/* Background Banner with Reduced Dark Overlay so artwork is clearly visible */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-30 transition-opacity duration-700"
+        className="absolute inset-0 z-0 bg-cover bg-center opacity-50 transition-opacity duration-700 pointer-events-none"
         style={{
           backgroundImage: `url('/images/day2-pandemonium.png')`,
           backgroundAttachment: 'fixed'
         }}
       />
 
-      {/* Cyber Neon Gradient Overlays */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#12071F] via-[#090314]/90 to-[#021820] pointer-events-none" />
+      {/* Cyber Neon Gradient Overlays with Top/Bottom Feathering */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#12071F] via-transparent to-[#021820] pointer-events-none" />
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,0,127,0.18),transparent_60%)] pointer-events-none" />
       <div className="absolute top-1/2 right-10 w-96 h-96 bg-[#7928CA]/20 blur-3xl pointer-events-none rounded-full" />
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#00F5D4]/15 blur-3xl pointer-events-none rounded-full" />
 
       {/* Subtle Scanline Texture */}
-      <div className="absolute inset-0 z-0 scanlines-overlay opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 z-0 scanlines-overlay opacity-25 pointer-events-none" />
 
       {/* Receding Perspective Synthwave Grid at Bottom */}
       <div className="absolute bottom-0 inset-x-0 h-48 z-0 perspective-grid opacity-35 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        {/* PANORAMIC ISLAND ARRIVAL SHOWCASE BANNER */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative w-full rounded-2xl overflow-hidden border-2 border-[#FF007F]/60 hover:border-[#00F5D4] mb-12 shadow-[0_0_30px_rgba(255,0,127,0.25)] group bg-[#0A0418] transition-colors duration-500"
+        >
+          <div className="relative aspect-[21/9] sm:aspect-[24/9] md:h-72 w-full overflow-hidden">
+            <img
+              src="/images/day2-pandemonium.png"
+              alt="Day 2 The Pandemonium — Neo-Dharwad Cyber Island Panoramic Artwork"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            {/* Cinematic Cyberpunk overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#070314] via-black/20 to-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#070314]/80 via-transparent to-transparent" />
+
+            {/* Top Telemetry Header */}
+            <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between flex-wrap gap-2 text-[10px] sm:text-xs font-mono-tech">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-black/85 border border-[#FF007F]/60 text-[#FF007F] backdrop-blur-md shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-ping" />
+                <span>⚓ EXPEDITION BOAT DOCKED // SECTOR 02: NEON PANDEMONIUM</span>
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-black/80 border border-white/10 text-cyan-200 backdrop-blur-md">
+                <Radio className="w-3.5 h-3.5 text-[#00F5D4]" />
+                <span>ATMOSPHERE: 19°C SYNTH RAIN</span>
+                <span className="text-slate-600">|</span>
+                <span>GRID LOAD: 1.21 GW</span>
+                <span className="text-slate-600">|</span>
+                <span className="text-[#00F5D4]">OPTICAL FIBER: 0.8ms</span>
+              </span>
+            </div>
+
+            {/* Bottom Showcase Caption */}
+            <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-end justify-between flex-wrap gap-3">
+              <div>
+                <span className="text-[10px] uppercase font-mono-tech tracking-widest text-[#00F5D4] block mb-0.5">
+                  CYBER TELEMETRY FEED
+                </span>
+                <h3 className="text-xl sm:text-3xl font-black font-orbitron text-white drop-shadow-md">
+                  THE PANDEMONIUM // NEO-DHARWAD CYBER SPRAWL
+                </h3>
+                <p className="text-xs text-slate-300 font-mono-tech max-w-xl hidden md:block">
+                  High-frequency neon pulses ignite the night. Code meets rhythm in an overclocked techno-frenzy.
+                </p>
+              </div>
+              <div className="px-3 py-1.5 rounded-lg bg-black/80 border border-[#00F5D4]/50 text-xs font-mono-tech text-[#00F5D4] shadow-md backdrop-blur-sm">
+                NAV: 15.4695° N, 75.0234° E
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Island Header & Cyber Telemetry */}
         <div className="mb-12 md:mb-16">
           <div className="flex flex-wrap items-center gap-3 mb-4">

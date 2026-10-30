@@ -124,73 +124,169 @@ export const Hack2FutureSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Central Floating Zero-Gravity Astronaut Centerpiece */}
+          {/* Central Floating Zero-Gravity Cinematic Astronaut Centerpiece */}
           <div className="lg:col-span-4 flex justify-center py-4 relative">
-            {/* Animated telemetry circular ring */}
-            <div className="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full border border-dashed border-cyan-500/30 animate-spin" style={{ animationDuration: '30s' }} />
-            <div className="absolute w-52 h-52 sm:w-64 sm:h-64 rounded-full border border-teal-500/20" />
+            {/* Animated telemetry circular rings */}
+            <div className="absolute w-72 h-72 sm:w-88 sm:h-88 rounded-full border border-dashed border-cyan-500/30 animate-spin" style={{ animationDuration: '35s' }} />
+            <div className="absolute w-60 h-60 sm:w-72 sm:h-72 rounded-full border border-teal-500/20" />
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-[9px] font-mono-tech text-cyan-400/80 uppercase tracking-widest bg-black/70 px-2 py-0.5 rounded border border-cyan-500/30">
+              EVA SUIT // SYS: PRESSURIZED
+            </div>
 
-            {/* Astronaut Zero-Gravity Bobbing Motion */}
+            {/* Astronaut Zero-Gravity Bobbing & Gentle Pitch Motion */}
             <motion.div
               animate={{
-                y: [-10, 10, -10],
-                rotate: [-2, 2, -2]
+                y: [-8, 8, -8],
+                rotate: [-2, 2.5, -2],
+                scale: [1, 1.015, 1]
               }}
               transition={{
-                duration: 6,
+                duration: 6.5,
                 repeat: Infinity,
                 ease: 'easeInOut'
               }}
-              className="relative z-10 w-44 h-44 sm:w-56 sm:h-56"
+              className="relative z-10 w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72"
             >
               <svg
-                viewBox="0 0 200 200"
-                className="w-full h-full drop-shadow-[0_0_35px_rgba(0,240,255,0.4)]"
+                viewBox="0 0 240 240"
+                className="w-full h-full drop-shadow-[0_0_35px_rgba(0,240,255,0.45)]"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                {/* Backpack / Life Support */}
-                <rect x="55" y="65" width="90" height="95" rx="20" fill="#1E293B" stroke="#00F0FF" strokeWidth="2.5" />
-                <rect x="65" y="75" width="25" height="15" rx="4" fill="#0F172A" stroke="#38BDF8" strokeWidth="1" />
-                <circle cx="115" cy="82" r="4" fill="#10B981" />
-                <circle cx="127" cy="82" r="4" fill="#F59E0B" />
-
-                {/* Astronaut Helmet */}
-                <ellipse cx="100" cy="58" rx="42" ry="40" fill="#E2E8F0" stroke="#00F0FF" strokeWidth="3" />
-                {/* Visor with Gold/Cyan Reflection */}
-                <ellipse cx="100" cy="58" rx="30" ry="24" fill="#0F172A" stroke="#F59E0B" strokeWidth="2" />
+                {/* Floating Umbilical Oxygen Tether Cable into Zero-G */}
                 <path
-                  d="M80 50 Q100 42 120 50 Q115 62 85 62 Z"
-                  fill="url(#visorGradient)"
-                  opacity="0.85"
+                  d="M168 140 C210 160 225 105 240 120"
+                  stroke="#38BDF8"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  strokeDasharray="6 2"
+                  opacity="0.8"
                 />
 
-                {/* Space Suit Torso */}
-                <rect x="65" y="95" width="70" height="75" rx="16" fill="#F8FAFC" stroke="#94A3B8" strokeWidth="2.5" />
-                {/* Mission Patch */}
-                <polygon points="100,105 108,118 92,118" fill="#0284C7" />
-                <circle cx="100" cy="113" r="2" fill="#F8FAFC" />
-                <text x="75" y="132" fill="#0284C7" fontSize="6.5" fontFamily="monospace" fontWeight="bold">
+                {/* Primary Life Support Subsystem (PLSS Backpack) */}
+                <rect x="52" y="72" width="136" height="118" rx="22" fill="#0F172A" stroke="#1E293B" strokeWidth="3" />
+                <rect x="58" y="78" width="124" height="106" rx="18" fill="#1E293B" stroke="#00F0FF" strokeWidth="1.5" />
+                {/* Cold Gas Attitude Thrusters on Backpack */}
+                <rect x="42" y="86" width="12" height="18" rx="3" fill="#334155" stroke="#38BDF8" strokeWidth="1" />
+                <rect x="186" y="86" width="12" height="18" rx="3" fill="#334155" stroke="#38BDF8" strokeWidth="1" />
+                {/* Subtle Thruster Plume */}
+                <ellipse cx="38" cy="95" rx="5" ry="3" fill="#00F0FF" opacity="0.6" className="animate-pulse" />
+                <ellipse cx="202" cy="95" rx="5" ry="3" fill="#00F0FF" opacity="0.6" className="animate-pulse" />
+
+                {/* Heavy Space Suit Torso & Arms (Ballistic White / High Contrast Shadows) */}
+                {/* Left Arm & Ribbed Elbow Joint */}
+                <path
+                  d="M72 110 C46 122 36 150 48 178 C54 182 64 175 60 165 C54 148 64 132 82 126 Z"
+                  fill="#E2E8F0"
+                  stroke="#64748B"
+                  strokeWidth="2.5"
+                />
+                {/* Left Tactical Glove */}
+                <ellipse cx="48" cy="184" rx="10" ry="12" fill="#0F172A" stroke="#00F0FF" strokeWidth="2" />
+                <rect x="44" y="176" width="9" height="5" rx="2" fill="#F59E0B" />
+
+                {/* Right Arm & Ribbed Elbow Joint */}
+                <path
+                  d="M168 110 C194 122 204 150 192 178 C186 182 176 175 180 165 C186 148 176 132 158 126 Z"
+                  fill="#E2E8F0"
+                  stroke="#64748B"
+                  strokeWidth="2.5"
+                />
+                {/* Right Tactical Glove */}
+                <ellipse cx="192" cy="184" rx="10" ry="12" fill="#0F172A" stroke="#00F0FF" strokeWidth="2" />
+                <rect x="187" y="176" width="9" height="5" rx="2" fill="#F59E0B" />
+
+                {/* Torso Suit Base */}
+                <path
+                  d="M72 104 C72 96 86 92 120 92 C154 92 168 96 168 104 L164 190 C164 196 150 200 120 200 C90 200 76 196 76 190 Z"
+                  fill="#F1F5F9"
+                  stroke="#475569"
+                  strokeWidth="3"
+                />
+
+                {/* Detailed Chest Display & Control Module (DCM Pack) */}
+                <rect x="85" y="128" width="70" height="52" rx="8" fill="#0A0F1D" stroke="#00F0FF" strokeWidth="2" />
+                {/* Hazard Stripe Header */}
+                <rect x="85" y="128" width="70" height="6" rx="2" fill="url(#hazardStripes)" />
+                {/* Digital LCD Telemetry Screen */}
+                <rect x="91" y="139" width="40" height="18" rx="3" fill="#020617" stroke="#38BDF8" strokeWidth="1" />
+                <text x="94" y="148" fill="#00F0FF" fontSize="5.5" fontFamily="monospace" fontWeight="bold">
                   H2F-2027
                 </text>
-                {/* Chest Telemetry Display */}
-                <rect x="75" y="138" width="50" height="18" rx="3" fill="#020617" stroke="#00F0FF" strokeWidth="1" />
-                <line x1="80" y1="147" x2="120" y2="147" stroke="#10B981" strokeWidth="1.5" strokeDasharray="2 1" />
+                <text x="94" y="154" fill="#10B981" fontSize="4.5" fontFamily="monospace">
+                  O2: 99.4%
+                </text>
+                {/* Status Indicator LEDs */}
+                <circle cx="140" cy="143" r="2.5" fill="#10B981" className="animate-pulse" />
+                <circle cx="147" cy="143" r="2.5" fill="#F59E0B" />
+                {/* Rotary Switches & Valves */}
+                <circle cx="98" cy="168" r="4" fill="#334155" stroke="#94A3B8" strokeWidth="1" />
+                <line x1="98" y1="166" x2="98" y2="170" stroke="#00F0FF" strokeWidth="1.5" />
+                <circle cx="112" cy="168" r="4" fill="#334155" stroke="#94A3B8" strokeWidth="1" />
+                <circle cx="126" cy="168" r="4" fill="#334155" stroke="#94A3B8" strokeWidth="1" />
+                <rect x="136" y="164" width="12" height="7" rx="1.5" fill="#EF4444" stroke="#DC2626" strokeWidth="1" />
 
-                {/* Arms */}
-                <path d="M65 105 Q40 120 48 145" stroke="#E2E8F0" strokeWidth="14" strokeLinecap="round" />
-                <path d="M135 105 Q160 120 152 145" stroke="#E2E8F0" strokeWidth="14" strokeLinecap="round" />
+                {/* Mission Patch / Flag on Chest */}
+                <rect x="88" y="108" width="22" height="13" rx="2" fill="#0284C7" stroke="#38BDF8" strokeWidth="1" />
+                <text x="91" y="117" fill="#FFFFFF" fontSize="5" fontFamily="monospace" fontWeight="bold">
+                  IIIT
+                </text>
+                {/* Tactical Harness Straps */}
+                <path d="M78 102 L86 128" stroke="#1E293B" strokeWidth="3" />
+                <path d="M162 102 L154 128" stroke="#1E293B" strokeWidth="3" />
+                <line x1="86" y1="180" x2="78" y2="194" stroke="#1E293B" strokeWidth="3" />
+                <line x1="154" y1="180" x2="162" y2="194" stroke="#1E293B" strokeWidth="3" />
 
-                {/* Gloves */}
-                <circle cx="48" cy="148" r="8" fill="#0284C7" />
-                <circle cx="152" cy="148" r="8" fill="#0284C7" />
+                {/* Neck Ring Assembly (Alloy Anodized) */}
+                <ellipse cx="120" cy="94" rx="38" ry="12" fill="#334155" stroke="#94A3B8" strokeWidth="2.5" />
+                <ellipse cx="120" cy="92" rx="34" ry="9" fill="#0F172A" stroke="#00F0FF" strokeWidth="1.5" />
 
-                {/* Defs */}
+                {/* HELMET (Cinematic Extravehicular Helmet Shell) */}
+                <ellipse cx="120" cy="62" rx="46" ry="43" fill="#F8FAFC" stroke="#475569" strokeWidth="3" />
+                {/* Helmet Cap Crown Contour */}
+                <path d="M84 45 C94 34 146 34 156 45" stroke="#CBD5E1" strokeWidth="2" strokeLinecap="round" />
+
+                {/* Helmet Mounted Tactical Spotlights (Left & Right) */}
+                <rect x="69" y="52" width="7" height="16" rx="2" fill="#0F172A" stroke="#00F0FF" strokeWidth="1" />
+                <circle cx="72" cy="60" r="2" fill="#FFFFFF" className="animate-pulse" />
+                <rect x="164" y="52" width="7" height="16" rx="2" fill="#0F172A" stroke="#00F0FF" strokeWidth="1" />
+                <circle cx="167" cy="60" r="2" fill="#FFFFFF" className="animate-pulse" />
+
+                {/* PANORAMIC GOLD & OBSIDIAN REFLECTIVE VISOR */}
+                <ellipse cx="120" cy="62" rx="36" ry="29" fill="#060913" stroke="#F59E0B" strokeWidth="2.5" />
+                <path
+                  d="M87 56 C94 40 146 40 153 56 C155 76 148 88 120 88 C92 88 85 76 87 56 Z"
+                  fill="url(#cinematicVisor)"
+                />
+
+                {/* Cosmic Starfield & Earth Horizon Reflection Inside Visor */}
+                <ellipse cx="120" cy="74" rx="26" ry="10" fill="#0284C7" opacity="0.35" />
+                <path d="M94 72 Q120 66 146 72" stroke="#38BDF8" strokeWidth="1.5" opacity="0.8" />
+                {/* HUD Crosshairs in Visor */}
+                <circle cx="120" cy="60" r="6" stroke="#00F0FF" strokeWidth="0.8" strokeDasharray="2 1" opacity="0.75" />
+                <line x1="120" y1="51" x2="120" y2="69" stroke="#00F0FF" strokeWidth="0.6" opacity="0.6" />
+                <line x1="111" y1="60" x2="129" y2="60" stroke="#00F0FF" strokeWidth="0.6" opacity="0.6" />
+
+                {/* Specular Glare Reflection on Visor Glass */}
+                <path
+                  d="M96 46 Q120 40 140 44 Q135 50 102 52 Z"
+                  fill="#FFFFFF"
+                  opacity="0.45"
+                />
+
                 <defs>
-                  <linearGradient id="visorGradient" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#00F0FF" />
+                  <linearGradient id="cinematicVisor" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#0B132B" />
+                    <stop offset="35%" stopColor="#1C2541" />
+                    <stop offset="70%" stopColor="#D97706" stopOpacity="0.85" />
+                    <stop offset="100%" stopColor="#0284C7" stopOpacity="0.9" />
+                  </linearGradient>
+                  <linearGradient id="hazardStripes" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#F59E0B" />
+                    <stop offset="25%" stopColor="#0F172A" />
                     <stop offset="50%" stopColor="#F59E0B" />
-                    <stop offset="100%" stopColor="#0F172A" />
+                    <stop offset="75%" stopColor="#0F172A" />
+                    <stop offset="100%" stopColor="#F59E0B" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -322,7 +418,7 @@ export const Hack2FutureSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 36-HOUR TIMELINE STEPPER (DaisyUI Timeline / Stepper Styling) */}
+        {/* 36-HOUR TIMELINE STEPPER */}
         <div className="mb-16">
           <div className="text-center mb-8">
             <span className="text-xs font-mono-tech text-cyan-400 uppercase tracking-widest block mb-1">

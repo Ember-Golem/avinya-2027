@@ -10,7 +10,8 @@ import {
   Filter,
   Crown,
   Music,
-  PartyPopper
+  PartyPopper,
+  Flame
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { EventItem, EventCategory, islandDaysData } from '@/data/avinyaData';
@@ -51,17 +52,17 @@ export const Day3Carnival: React.FC<Day3CarnivalProps> = ({ onSelectEvent }) => 
       id="day3"
       className="relative min-h-screen py-20 md:py-28 text-amber-50 overflow-hidden bg-[#021826]"
     >
-      {/* Background Banner with Carnival & Harbor Blend */}
+      {/* Background Banner with Reduced Dark Overlay so artwork is clearly visible */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-35 transition-opacity duration-700"
+        className="absolute inset-0 z-0 bg-cover bg-center opacity-50 transition-opacity duration-700 pointer-events-none"
         style={{
           backgroundImage: `url('/images/day3-carnival.png')`,
           backgroundAttachment: 'fixed'
         }}
       />
 
-      {/* Midnight Harbor Teal & Lantern Gold Overlays */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#021820] via-[#031E2E]/90 to-[#020308] pointer-events-none" />
+      {/* Midnight Harbor Teal & Lantern Gold Overlays with Top/Bottom Feathering */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#021820] via-transparent to-[#020308] pointer-events-none" />
       <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/15 via-transparent to-black/70 pointer-events-none" />
 
       {/* Warm Bokeh / Floating Lantern Glows */}
@@ -69,6 +70,59 @@ export const Day3Carnival: React.FC<Day3CarnivalProps> = ({ onSelectEvent }) => 
       <div className="absolute bottom-40 right-1/4 w-80 h-80 bg-[#E63946]/15 blur-3xl rounded-full pointer-events-none animate-pulse" style={{ animationDuration: '5s' }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        {/* PANORAMIC ISLAND ARRIVAL SHOWCASE BANNER */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative w-full rounded-2xl overflow-hidden border-2 border-[#FFB703]/70 mb-12 shadow-[0_0_35px_rgba(255,183,3,0.2)] group bg-[#061828]"
+        >
+          <div className="relative aspect-[21/9] sm:aspect-[24/9] md:h-72 w-full overflow-hidden">
+            <img
+              src="/images/day3-carnival.png"
+              alt="Day 3 The Carnival Island — Celestial Harbor Panoramic Artwork"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+            {/* Cinematic Harbor overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#021826] via-black/15 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#021826]/80 via-transparent to-transparent" />
+
+            {/* Top Telemetry Header */}
+            <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between flex-wrap gap-2 text-[10px] sm:text-xs font-mono-tech">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/85 border border-[#FFB703]/60 text-[#FFB703] backdrop-blur-md shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-[#FFB703] animate-ping" />
+                <span>⚓ EXPEDITION BOAT DOCKED // SECTOR 03: CELESTIAL HARBOR</span>
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/80 border border-white/10 text-amber-200 backdrop-blur-md">
+                <Flame className="w-3.5 h-3.5 text-[#FFB703]" />
+                <span>ATMOSPHERE: 24°C HARBOR BREEZE</span>
+                <span className="text-slate-600">|</span>
+                <span>FIREWORKS: ARMED</span>
+                <span className="text-slate-600">|</span>
+                <span className="text-[#FFB703]">LANTERN COUNT: 1,000+</span>
+              </span>
+            </div>
+
+            {/* Bottom Showcase Caption */}
+            <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-end justify-between flex-wrap gap-3">
+              <div>
+                <span className="text-[10px] uppercase font-mono-tech tracking-widest text-[#FFB703] block mb-0.5">
+                  HARBOR JUBILEE HORIZON
+                </span>
+                <h3 className="text-xl sm:text-3xl font-black font-playfair text-white drop-shadow-md">
+                  THE CARNIVAL ISLAND // CELESTIAL HARBOR GALA
+                </h3>
+                <p className="text-xs text-amber-100/90 font-serif max-w-xl hidden md:block">
+                  Water mirrors the pyrotechnic fireworks. Tonight we dance under the lantern constellation and crown the champions.
+                </p>
+              </div>
+              <div className="px-3 py-1.5 rounded-full bg-black/80 border border-[#FFB703]/50 text-xs font-mono-tech text-[#FFB703] shadow-md backdrop-blur-sm">
+                NAV: 15.4740° N, 75.0312° E
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Island Header & Celestial Harbor Telemetry */}
         <div className="mb-12 md:mb-16">
           <div className="flex flex-wrap items-center gap-3 mb-4">

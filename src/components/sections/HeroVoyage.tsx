@@ -156,7 +156,7 @@ export const HeroVoyage: React.FC<HeroVoyageProps> = ({
         >
           <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
-            
+
             <div className="text-xs uppercase font-mono-tech tracking-widest text-slate-400 mb-3 flex items-center justify-center gap-2">
               <Calendar className="w-3.5 h-3.5 text-cyan-400" />
               <span>VOYAGE EMBARKATION COUNTDOWN</span>
@@ -259,44 +259,130 @@ export const HeroVoyage: React.FC<HeroVoyageProps> = ({
         </motion.div>
       </motion.div>
 
-      {/* Animated SVG Ocean Waves Layering at Bottom */}
+      {/* MULTI-LAYERED CURVED SINE OCEAN WAVES & GLOWING EXPEDITION SHIP SILHOUETTE */}
       <div className="relative w-full overflow-hidden leading-none z-10 pointer-events-none mt-auto">
-        {/* Layer 1: Deep Back Wave */}
-        <div className="w-[200%] animate-wave-slow opacity-30">
+        {/* STYLIZED EXPEDITION SHIP RIDING THE OCEAN WAVE CREST */}
+        <motion.div
+          animate={{
+            y: [-7, 9, -7],
+            rotate: [-3.5, 4, -3.5],
+            x: [-12, 12, -12]
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+          className="absolute bottom-10 sm:bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 z-20 pointer-events-none drop-shadow-[0_0_25px_rgba(0,240,255,0.7)]"
+        >
           <svg
-            className="w-full h-12 md:h-20 text-cyan-700 fill-current"
-            viewBox="0 0 1200 120"
+            className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40"
+            viewBox="0 0 120 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Water wake ripples around hull */}
+            <ellipse cx="60" cy="100" rx="35" ry="4" fill="#00F0FF" opacity="0.3" className="animate-pulse" />
+            <path d="M22 98 Q60 106 98 98" stroke="#00F0FF" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.7" />
+
+            {/* Ship Hull (Galleon/Caravel silhouette with glowing cyber rim) */}
+            <path
+              d="M26 84 C30 96 45 101 60 101 C75 101 90 96 96 84 C80 88 40 88 26 84 Z"
+              fill="#061226"
+              stroke="#00F0FF"
+              strokeWidth="2"
+            />
+            {/* Hull Planking Accents */}
+            <path d="M30 89 Q60 95 92 89" stroke="#38BDF8" strokeWidth="1" opacity="0.6" />
+            <path d="M36 94 Q60 98 86 94" stroke="#0284C7" strokeWidth="1" opacity="0.5" />
+
+            {/* Sterncastle & Bowsprit */}
+            <path d="M26 84 L23 75 L35 75 L34 85 Z" fill="#061226" stroke="#00F0FF" strokeWidth="1.5" />
+            <line x1="96" y1="84" x2="114" y2="72" stroke="#38BDF8" strokeWidth="2.5" strokeLinecap="round" />
+
+            {/* Main Center Mast & Billowing Sails */}
+            <line x1="60" y1="20" x2="60" y2="86" stroke="#E2E8F0" strokeWidth="2.5" />
+            {/* Lower Main Sail */}
+            <path
+              d="M44 54 Q60 48 76 54 Q64 74 60 76 Q54 74 44 54 Z"
+              fill="url(#sailGlow)"
+              stroke="#00F0FF"
+              strokeWidth="1.5"
+            />
+            {/* Upper Top Sail */}
+            <path
+              d="M48 30 Q60 26 72 30 Q63 46 60 47 Q56 46 48 30 Z"
+              fill="url(#sailGlow)"
+              stroke="#00F0FF"
+              strokeWidth="1.5"
+            />
+
+            {/* Fore-Mast & Jib Sails */}
+            <line x1="82" y1="36" x2="82" y2="84" stroke="#CBD5E1" strokeWidth="2" />
+            <path
+              d="M74 46 Q82 42 90 46 Q84 62 82 64 Q78 62 74 46 Z"
+              fill="url(#sailGlow)"
+              stroke="#38BDF8"
+              strokeWidth="1.2"
+            />
+
+            {/* Rigging Lines */}
+            <line x1="60" y1="22" x2="26" y2="84" stroke="#00F0FF" strokeWidth="0.75" opacity="0.6" />
+            <line x1="60" y1="22" x2="96" y2="84" stroke="#00F0FF" strokeWidth="0.75" opacity="0.6" />
+            <line x1="60" y1="22" x2="114" y2="72" stroke="#38BDF8" strokeWidth="0.75" opacity="0.7" />
+
+            {/* Masthead Pennant Flag fluttering */}
+            <path d="M60 20 L76 16 L60 25 Z" fill="#F59E0B" className="animate-pulse" />
+            <circle cx="60" cy="20" r="2.5" fill="#00F0FF" />
+
+            {/* Glowing Lantern at Stern */}
+            <circle cx="23" cy="74" r="3.5" fill="#F59E0B" className="animate-ping" style={{ animationDuration: '3s' }} />
+
+            <defs>
+              <linearGradient id="sailGlow" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#0284C7" stopOpacity="0.4" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </motion.div>
+
+        {/* Wave Layer 1: Deep Ocean Swell (Undulating Background) */}
+        <div className="w-[200%] animate-wave-slow opacity-60">
+          <svg
+            className="w-full h-16 sm:h-24 md:h-28 text-[#02142B] fill-current"
+            viewBox="0 0 1600 120"
             preserveAspectRatio="none"
           >
-            <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,50 L1200,120 L0,120 Z" />
+            <path d="M0,45 C200,80 400,10 600,50 C800,90 1000,15 1200,55 C1400,95 1500,20 1600,45 L1600,120 L0,120 Z" />
           </svg>
         </div>
 
-        {/* Layer 2: Middle Bioluminescent Wave */}
-        <div className="w-[200%] animate-wave-fast -mt-6 md:-mt-10 opacity-50">
+        {/* Wave Layer 2: Bioluminescent Middle Swell (Counter Phase) */}
+        <div className="w-[200%] animate-wave-fast -mt-8 sm:-mt-12 md:-mt-16 opacity-75">
           <svg
-            className="w-full h-12 md:h-20 text-teal-600 fill-current"
-            viewBox="0 0 1200 120"
+            className="w-full h-16 sm:h-24 md:h-28 text-[#004B6E] fill-current"
+            viewBox="0 0 1600 120"
             preserveAspectRatio="none"
           >
-            <path d="M0,40 C300,100 600,0 900,70 C1050,100 1150,20 1200,40 L1200,120 L0,120 Z" />
+            <path d="M0,50 C250,15 500,85 750,45 C1000,10 1250,85 1500,40 C1550,30 1580,60 1600,50 L1600,120 L0,120 Z" />
           </svg>
         </div>
 
-        {/* Layer 3: Foreground Abyssal Wave merging into Day 1 */}
-        <div className="-mt-8 md:-mt-12">
+        {/* Wave Layer 3: Foreground Cresting Surf Merging into Island 1 */}
+        <div className="-mt-10 sm:-mt-14 md:-mt-18">
           <svg
-            className="w-full h-14 md:h-24 text-[#060B18] fill-current"
-            viewBox="0 0 1200 120"
+            className="w-full h-20 sm:h-28 md:h-32 text-[#0E0806] fill-current drop-shadow-[0_-5px_15px_rgba(0,240,255,0.2)]"
+            viewBox="0 0 1600 120"
             preserveAspectRatio="none"
           >
-            <path d="M0,50 C200,120 450,10 700,70 C950,130 1100,30 1200,60 L1200,120 L0,120 Z" />
+            <path d="M0,55 C180,85 360,25 540,65 C720,105 900,30 1080,70 C1260,110 1440,35 1600,60 L1600,120 L0,120 Z" />
           </svg>
         </div>
       </div>
 
       {/* Downward Navigation Hint */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center">
         <button
           onClick={onSetSail}
           aria-label="Scroll down to Day 1 Outpost"
